@@ -1,8 +1,8 @@
 #include "operaciones.h"
 
 /* ── sumar — ya implementada, referencia de estilo ───────────────────────── */
-
-int sumar(int a, int b) {
+/* Al agregar las variables constantes son inmodificable en tiempo de ejecucion dando mas seguiadad al sistema*/
+int sumar(const int a, const int b) {
     return a + b;
 }
 

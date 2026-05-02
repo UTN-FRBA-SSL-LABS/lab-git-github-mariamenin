@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/2a4L9bD1)
 # Laboratorio: Git y GitHub
 
@@ -10,6 +11,14 @@ En proyectos de software real, raramente trabajás solo. Un equipo puede tener d
 Git resuelve exactamente eso. Pero Git no es solo un "backup con historial": es un protocolo de colaboración. La forma en que usás Git — cómo organizás los commits, qué nombres le ponés a las branches, cómo hacés los reviews — tiene un impacto directo en la calidad del trabajo en equipo.
 
 Este laboratorio simula el flujo de trabajo que vas a encontrar en equipos profesionales: ramas de trabajo, pull requests, revisión de código y resolución de conflictos.
+
+# Laboratorio: Git y GitHub
+
+**Nombre:** ___________________________
+**Compañero/a:** ___________________________
+
+
+## Antes de empezar
 
 ### Herramientas necesarias
 
@@ -53,9 +62,9 @@ make
 
 Vas a ver que `multiplicar` devuelve 0 — eso es lo esperado, es lo que vas a implementar.
 
+
 > **Tip:** a lo largo del laboratorio podés correr `make test` en cualquier momento para ver cuántos checks pasás, sin necesidad de hacer push. Guardá el push para cuando hayas terminado una parte completa.
 
----
 
 ## Qué vas a aprender
 
@@ -97,13 +106,12 @@ Solo se acepta **una letra minúscula** (`a`, `b`, `c` o `d`) pegada al `=`, sin
 
 Cada respuesta correcta suma puntos. Las respuestas se validan automáticamente con cada push — más detalles al final del laboratorio.
 
----
-
 ## Parte I — Tu primera branch y tu primer PR
 
 ### ¿Qué es una branch?
 
-Una branch (rama) es una línea de desarrollo independiente. Te permite trabajar en algo nuevo sin tocar el código que ya funciona, y luego integrar esos cambios cuando estén listos y revisados.
+
+Una branch (rama) es una línea de desarrollo paralela. Permite trabajar en algo nuevo sin tocar el código que ya funciona en `main`. Cuando terminás, integrás los cambios con un Pull Request.
 
 ```
 main     ──●──────────────────────────●──▶
@@ -111,9 +119,11 @@ main     ──●────────────────────�
 feature      ●── ●── ●── ●── ●──●──/
 ```
 
+
 En la mayoría de los equipos existe una rama principal protegida — generalmente llamada `main`, aunque en muchos proyectos se usa `develop` u otras convenciones — que siempre debe tener código funcional y estable. Nadie trabaja directamente en ella: cada nuevo cambio va en una branch propia que después se integra via Pull Request, una vez revisada.
 
 ¿Por qué? Porque cuando varias personas trabajan en paralelo sobre la misma base de código, si todos modifican `main` directamente, el historial se convierte en un caos: cambios a medias, código roto, imposible saber qué hizo quién y cuándo. Las branches le dan a cada persona un espacio de trabajo aislado, sin interferir con el trabajo de los demás hasta que el cambio esté listo.
+
 
 **Regla de oro:** nunca trabajar directamente en `main`. Todo cambio va en una branch propia.
 
@@ -143,7 +153,7 @@ Abrí `operaciones.c`. Encontrá la función `multiplicar` y reemplazá el cuerp
 int multiplicar(int a, int b) {
     return a * b;
 }
-```
+
 
 Acordate de sacar el `(void)a; (void)b;` también, ya no hace falta.
 
@@ -165,6 +175,7 @@ Antes de commitear, Git te pide que elijas explícitamente qué cambios incluir.
 ```
 Working directory  →  git add  →  Staging area  →  git commit  →  Historial
 ```
+
 
 ¿Por qué existe el staging area? Porque a veces modificás varios archivos pero querés hacer commits separados por tema. El staging te permite decir "este cambio va en este commit, y ese otro va en el siguiente", sin tener que commitear todo junto ni perder ningún cambio.
 
@@ -195,6 +206,7 @@ git commit -m "Implementa multiplicar con operador *"
 **¿Qué es un buen mensaje de commit?**
 
 Un mensaje de commit debe explicar **qué hace** el cambio, no *cómo* lo hace. Tiene que ser legible para un compañero que ve el historial sin ver el código. Imaginá que alguien necesita entender, en 30 segundos, qué pasó en este proyecto hace seis meses: los mensajes de commit son la primera fuente de información.
+
 
 | ❌ Mal | ✅ Bien |
 |---|---|
@@ -288,6 +300,9 @@ d) Porque GitHub Classroom lo requiere para la corrección automática
 
 ```
 RESPUESTA_P1=b
+```
+```
+PARTE_I_COMPLETA=SI
 ```
 
 ---
@@ -401,7 +416,7 @@ git switch main
 git pull
 ```
 
----
+
 
 **P2.** Cuando el owner pide cambios (Request changes) en un PR, ¿qué debe hacer el colaborador?
 
@@ -416,6 +431,10 @@ d) Pedirle al owner que mergee igual y hacer el fix en un PR separado
 ```
 RESPUESTA_P2=b
 ```
+```
+PARTE_II_COMPLETA=SI
+```
+_(escribí SI cuando el PR del compañero esté aprobado y mergeado)_
 
 ---
 
@@ -482,7 +501,6 @@ git log --oneline
 
 Deberías ver el commit `wip: experimento roto` seguido del `Revert "wip: experimento roto"`.
 
----
 
 **P3.** `git revert` crea un commit nuevo que deshace los cambios de uno anterior. ¿Por qué es preferible a `git reset --hard` cuando los cambios ya fueron pusheados?
 
@@ -497,6 +515,15 @@ d) Porque GitHub bloquea automáticamente los push después de un `git reset --h
 ```
 RESPUESTA_P3=c
 ```
+
+**P1** — ¿Por qué `git revert` es preferible a `git reset --hard` cuando ya hiciste push de los cambios?
+
+> R:
+
+```
+PARTE_III_COMPLETA=
+```
+_(escribí SI cuando el revert esté pusheado)_
 
 ---
 
@@ -614,7 +641,7 @@ git commit -m "Resuelve conflicto en esPar: conserva version con operador %"
 git push
 ```
 
----
+
 
 **P4.** Las dos implementaciones de `esPar` que conflictuaban eran `(n % 2) == 0` y `(n & 1) == 0`. ¿Qué diferencia hay entre ellas?
 
@@ -630,7 +657,13 @@ d) No hay ninguna diferencia; el compilador genera exactamente el mismo código 
 RESPUESTA_P4=
 ```
 
----
+**P2** — Describí con tus palabras qué diferencia hay entre las dos implementaciones de `esPar` que conflictuaban. ¿En qué caso podría importar elegir una sobre la otra?
+
+> R:
+
+```
+PARTE_IV_COMPLETA=
+```
 
 ## Preguntas de reflexión
 
@@ -683,6 +716,7 @@ RESPUESTA_P7=
 ---
 
 ## Entrega
+
 
 ### Checklist
 
@@ -744,3 +778,12 @@ Para ver los resultados:
 También podés ver un resumen rápido: en la pestaña **Code**, junto a cada commit aparece un ícono ✅ (todos los checks pasaron) o ❌ (alguno falló). Hacé click en ese ícono para ver el detalle.
 
 El puntaje mínimo para aprobar es **60 / 100**.
+
+- `feature/mi-funcion` mergeada a `main` vía PR
+- PR del compañero revisado, aprobado y mergeado
+- Commit `wip: experimento roto` y su revert en el historial
+- Conflicto de `esPar` resuelto en `main`
+- Preguntas P1–P5 respondidas
+- Push a `main`
+
+El CI corre automáticamente. En la pestaña **Actions** podés ver qué checks pasan.
